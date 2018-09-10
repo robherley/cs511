@@ -1,8 +1,9 @@
 
 /**
- * Robert Herley I pledge my honor that I have abided by the Stevens Honor
- * System.
+ * Robert Herley & Aimal Wajihuddin
+ * We pledge our honor that we have abided by the Stevens Honor System.
  */
+
 
 import java.util.ArrayList;
 import java.util.List;
