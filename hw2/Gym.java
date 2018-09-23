@@ -12,6 +12,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Semaphore;
 
 import hw2.ApparatusType;
+import hw2.Client;
 import hw2.WeightPlateSize;
 
 public class Gym implements Runnable {
@@ -37,6 +38,7 @@ public class Gym implements Runnable {
 
       // Initialize Weight Semaphore Map
       for (WeightPlateSize weight : WeightPlateSize.values()) {
+         // Add a semaphore with the number of weights for each weight
          weightSems.put(weight, new Semaphore(noOfWeightPlates.get(weight)));
       }
 
@@ -50,7 +52,7 @@ public class Gym implements Runnable {
    public void run() {
       executor = Executors.newFixedThreadPool(GYM_SIZE);
       for (int i = 0; i < GYM_REGISTERED_CLIENTS; i++) {
-         executor.execute(new Client(i));
+         executor.execute(Client.generateRandom(i, noOfWeightPlates));
       }
       executor.shutdown();
    }
