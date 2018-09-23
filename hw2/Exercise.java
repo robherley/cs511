@@ -7,6 +7,7 @@ package hw2;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.Random;
+import java.util.Arrays;
 
 public class Exercise {
    private ApparatusType at;
@@ -35,7 +36,7 @@ public class Exercise {
       Map<WeightPlateSize, Integer> reqWeights = new HashMap<WeightPlateSize, Integer>();
       Random rand = new Random();
       int totalWeight = 0;
-      while (totalWeight != 0) { // Just incase our combined weight is < 1
+      while (totalWeight == 0) { // Just incase our combined weight is < 1
          for (WeightPlateSize w : WeightPlateSize.values()) {
             int newWeight = rand.nextInt(10); // Possible of 0-10 per weight
             reqWeights.put(w, newWeight);
