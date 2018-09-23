@@ -5,6 +5,7 @@
 package hw2;
 
 import java.util.Map;
+import java.util.HashMap;
 import java.util.Random;
 
 public class Exercise {
@@ -30,7 +31,6 @@ public class Exercise {
       return duration;
    }
 
-   // I don't know why we need to pass in the weight map...
    public static Exercise generateRandom(Map<WeightPlateSize, Integer> weight) {
       Map<WeightPlateSize, Integer> reqWeights = new HashMap<WeightPlateSize, Integer>();
       Random rand = new Random();

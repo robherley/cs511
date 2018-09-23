@@ -22,9 +22,9 @@ public class Gym implements Runnable {
    private Set<Integer> clients; // Used to Generate Client ID's
    private ExecutorService executor;
 
-   public Semaphore weightMutex; // Only one person can pickup at a time
-   public Map<WeightPlateSize, Semaphore> weightSems; // Weight protection map
-   public Map<ApparatusType, Semaphore> apparatusSems; // App protection map
+   public static Semaphore weightMutex; // Only one person can pickup at a time
+   public static Map<WeightPlateSize, Semaphore> weightSems; // Weight protection map
+   public static Map<ApparatusType, Semaphore> apparatusSems; // App protection map
 
    public Gym() {
       // Initialize noOfWeightPlates
