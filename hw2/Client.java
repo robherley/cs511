@@ -7,7 +7,7 @@ package hw2;
 import java.util.List;
 import java.util.Map;
 
-public class Client {
+public class Client implements Runnable {
    private int id; // unique client id
    private List<Exercise> routine; // list of exercises
 
@@ -21,4 +21,8 @@ public class Client {
       // TODO: temp placeholder
       return null;
    };
+
+   public void run() {
+
+   }
 }

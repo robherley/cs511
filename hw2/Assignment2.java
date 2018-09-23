@@ -5,10 +5,13 @@
 package hw2;
 
 public class Assignment2 {
-
    public static void main(String[] args) {
-      System.out.println("Testing...");
-      System.out.printf("Random Aparatus: %s\n", ApparatusType.getRandom());
-      System.out.printf("Random Weight: %s\n", WeightPlateSize.getRandom());
+      Thread thread = new Thread(new Gym());
+      thread.start();
+      try {
+         thread.join();
+      } catch (InterruptedException e) {
+         e.printStackTrace();
+      }
    }
 }
