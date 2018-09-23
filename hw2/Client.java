@@ -35,17 +35,10 @@ public class Client implements Runnable {
       return client;
    };
 
-   public void prettyLog(Exercise ex) {
-      System.out.printf("|Client %d| %s ", id, ex.getApparatusType());
-      Map<WeightPlateSize, Integer> wt = ex.getWeightMap();
-      System.out.printf("=> (S: %d, M: %d, L: %d)\n", wt.get(WeightPlateSize.SMALL_3KG),
-            wt.get(WeightPlateSize.MEDIUM_5KG), wt.get(WeightPlateSize.LARGE_10KG));
-   }
-
    public void run() {
+      PrettyLogger.logRoutine(id, routine, false);
       for (Exercise ex : routine) {
-         prettyLog(ex);
-
+         PrettyLogger.logExercise(id, ex, false);
          // First, we attempt to grab weights (only one client at a time)
          try {
             Gym.weightMutex.acquire();
@@ -94,8 +87,8 @@ public class Client implements Runnable {
                Gym.weightSems.get(size).release();
             }
          }
-
-         System.out.printf("|Client %d| Finished Workout\n", id);
+         PrettyLogger.logExercise(id, ex, true);
       }
+      PrettyLogger.logRoutine(id, routine, true);
    }
 }

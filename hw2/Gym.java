@@ -17,7 +17,7 @@ import hw2.WeightPlateSize;
 
 public class Gym implements Runnable {
    private static final int GYM_SIZE = 30; // Number of Thread Pools
-   private static final int GYM_REGISTERED_CLIENTS = 1; // Reg Clients
+   private static final int GYM_REGISTERED_CLIENTS = 10000; // Reg Clients
    private Map<WeightPlateSize, Integer> noOfWeightPlates; // Plate Map
    private Set<Integer> clients; // Used to Generate Client ID's
    private ExecutorService executor;
