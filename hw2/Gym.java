@@ -22,9 +22,12 @@ public class Gym implements Runnable {
    private Set<Integer> clients; // Used to Generate Client ID's
    private ExecutorService executor;
 
-   public static Semaphore weightMutex; // Only one person can pickup at a time
-   public static Map<WeightPlateSize, Semaphore> weightSems; // Weight protection map
-   public static Map<ApparatusType, Semaphore> apparatusSems; // App protection map
+   // Only one person can pickup at a time, so let's make a mutex for that
+   public static Semaphore weightMutex = new Semaphore(1);
+   // Weight protection map
+   public static Map<WeightPlateSize, Semaphore> weightSems = new HashMap<WeightPlateSize, Semaphore>();
+   // App protection map
+   public static Map<ApparatusType, Semaphore> apparatusSems = new HashMap<ApparatusType, Semaphore>();
 
    public Gym() {
       // Initialize noOfWeightPlates
@@ -32,9 +35,6 @@ public class Gym implements Runnable {
       noOfWeightPlates.put(WeightPlateSize.SMALL_3KG, 110);
       noOfWeightPlates.put(WeightPlateSize.MEDIUM_5KG, 90);
       noOfWeightPlates.put(WeightPlateSize.LARGE_10KG, 75);
-
-      // Initialize Semaphore for accessing weight map
-      weightMutex = new Semaphore(1);
 
       // Initialize Weight Semaphore Map
       for (WeightPlateSize weight : WeightPlateSize.values()) {

@@ -36,9 +36,9 @@ public class Client implements Runnable {
    };
 
    public void prettyLog(Exercise ex) {
-      System.out.printf("|Client %i| %s ", id, ex.getApparatusType());
+      System.out.printf("|Client %d| %s ", id, ex.getApparatusType());
       Map<WeightPlateSize, Integer> wt = ex.getWeightMap();
-      System.out.printf("=> (S: %i, M: %i, L: %i)\n", wt.get(WeightPlateSize.SMALL_3KG),
+      System.out.printf("=> (S: %d, M: %d, L: %d)\n", wt.get(WeightPlateSize.SMALL_3KG),
             wt.get(WeightPlateSize.MEDIUM_5KG), wt.get(WeightPlateSize.LARGE_10KG));
    }
 
@@ -95,7 +95,7 @@ public class Client implements Runnable {
             }
          }
 
-         System.out.printf("|Client %i| Finished Workout ", id);
+         System.out.printf("|Client %d| Finished Workout\n", id);
       }
    }
 }
