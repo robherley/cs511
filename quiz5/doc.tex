@@ -1,0 +1,33 @@
+\documentclass{article}
+\usepackage{graphicx}
+% \usepackage[margin=1in]{geometry}
+\setlength\parindent{0pt}
+   
+\begin{document}
+\renewcommand{\thesection}{Exercise \arabic{section}}
+
+\title{CS-511: Quiz 5}
+\author{Robert Herley \& Aimal Wajihuddin}
+
+\maketitle
+
+\begin{center}
+   We pledge our honor that we have abided by the Stevens Honor System.
+\end{center}
+
+\section{}
+In the release method of the monitor, the \texttt{nonZero} condition is only
+signalled once. If multiple threads were waiting, only one would have been 
+awoken. To fix this, we can either \texttt{signalAll} or cascaded signalling
+must be utilized.
+
+\section{}
+First, thread \texttt{P} is ran, we print "A" and start the \texttt{release} method.
+We run the empty check on the condition, but before we increment permissions, we
+switch to thread \texttt{Q} where we acquire. Since, we have not incremented 
+permissions, it is still equal to zero, and we wait. Now, we switch back to 
+\texttt{P}, where the thread will finish it's function block and increment
+permissions. Since we are never signalled at the end of \texttt{P}, thread 
+\texttt{Q} is stuck in the wait condition and "B" is never printed.
+
+\end{document}
