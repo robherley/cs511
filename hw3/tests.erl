@@ -4,9 +4,11 @@
 
 start() -> lists:map(fun interp:runStr/1, examples()).
 
+% examples() ->
+%     [ex1(), ex2(), ex3(), ex4(), ex5(), ex6(), ex7(), ex8(),
+%      ex9()].
 examples() ->
-    [ex1(), ex2(), ex3(), ex4(), ex5(), ex6(), ex7(), ex8(),
-     ex9()].
+    [ex1(), ex2(), ex3(), ex4(), ex5(), ex6(), ex7(), ex8(), ex9()].
 
 ex1() -> "let x=1 in let x=3 in +(x,7)".
 
@@ -24,4 +26,4 @@ ex7() -> "let x=1 in let y=proc(z) +(z,x) in y(6)".
 
 ex8() -> "zero?(7)".
 
-ex9() -> "3(4)".
+ex9() -> "let x=1 in let f=proc (y) +(y,x) in let x=2 in f(3)".

@@ -9,9 +9,9 @@ new() ->
 
 -spec add(envType(),atom(),valType())-> envType().
 add(Env,Key,Value) ->
-    dict:append(Key, Value, Env).
+    dict:append(Key, Value, dict:erase(Key, Env)).
 
 -spec lookup(envType(),atom())-> valType().
 lookup(Env,Key) -> 
-   hd(dict:fetch(Key, Env)).
+   lists:last(dict:fetch(Key, Env)).
 
