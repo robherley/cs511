@@ -40,13 +40,13 @@ runStr(String) ->
     end.
 
 
--spec numVal2Num(numValType()) -> integer().
-numVal2Num({num, N}) ->
-    N.
+% -spec numVal2Num(numValType()) -> integer().
+% numVal2Num({num, N}) ->
+%     N.
 
--spec boolVal2Bool(boolValType()) -> boolean().
-boolVal2Bool({bool, B}) ->
-    B.
+% -spec boolVal2Bool(boolValType()) -> boolean().
+% boolVal2Bool({bool, B}) ->
+%     B.
 
 printErr(Str) -> erlang:error("Error: " ++ Str).
 
