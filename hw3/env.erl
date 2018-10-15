@@ -13,5 +13,5 @@ add(Env,Key,Value) ->
 
 -spec lookup(envType(),atom())-> valType().
 lookup(Env,Key) -> 
-   dict:fetch(Key, Env).
+   hd(dict:fetch(Key, Env)).
 
