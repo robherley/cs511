@@ -1,6 +1,7 @@
 -module(tests).
 
--export([start/0]).
+-compile(export_all).
+% -export([start/0]).
 
 start() -> lists:map(fun interp:runStr/1, examples()).
 
