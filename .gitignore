@@ -1,5 +1,5 @@
 
-# Created by https://www.gitignore.io/api/java,code,macos
+# Created by https://www.gitignore.io/api/java,code,macos,emacs,erlang
 
 ### Code ###
 # Visual Studio Code - https://code.visualstudio.com/
@@ -7,6 +7,65 @@
 .vscode/
 tsconfig.json
 jsconfig.json
+
+### Emacs ###
+# -*- mode: gitignore; -*-
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+auto-save-list
+tramp
+.\#*
+
+# Org-mode
+.org-id-locations
+*_archive
+
+# flymake-mode
+*_flymake.*
+
+# eshell files
+/eshell/history
+/eshell/lastdir
+
+# elpa packages
+/elpa/
+
+# reftex files
+*.rel
+
+# AUCTeX auto folder
+/auto/
+
+# cask packages
+.cask/
+dist/
+
+# Flycheck
+flycheck_*.el
+
+# server auth directory
+/server/
+
+# projectiles files
+.projectile
+
+# directory configuration
+.dir-locals.el
+
+### Erlang ###
+.eunit
+deps
+*.o
+*.beam
+*.plt
+erl_crash.dump
+ebin/*.beam
+rel/example_project
+.concrete/DEV_MODE
+.rebar
 
 ### Java ###
 # Compiled class file
@@ -62,4 +121,4 @@ Temporary Items
 .apdisk
 
 
-# End of https://www.gitignore.io/api/java,code,macos
+# End of https://www.gitignore.io/api/java,code,macos,emacs,erlang
