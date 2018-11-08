@@ -2,8 +2,11 @@
 -compile(export_all).
 -author("Rob Herley, Aimal Wajihuddin").
 
+setup_loop(NumSensors, CurrSensors) when NumSensors == CurrSensors ->
+	ok; % when we have sensors div by 10
 setup_loop(NumSensors, CurrSensors) when NumSensors - CurrSensors =< 9 ->
-	spawn(?MODULE, create_watcher, [CurrSensors, NumSensors - 1]);
+	spawn(?MODULE, create_watcher, [CurrSensors, NumSensors - 1]),
+    ok;
 setup_loop(NumSensors, CurrSensors) when NumSensors - CurrSensors > 9 -> 
 	spawn(?MODULE, create_watcher, [CurrSensors, CurrSensors + 9]),
 	setup_loop(NumSensors, CurrSensors + 10).
