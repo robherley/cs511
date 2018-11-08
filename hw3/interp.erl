@@ -78,7 +78,7 @@ valueOf({ plusExp, Left, Right }, Env) ->
 valueOf({ isZeroExp, Exp }, Env) -> 
     case valueOf(Exp, Env) of
         { num, Num } -> {bool, Num == 0};
-        {_, Exp} -> printErr("valueOf(isZeroExp): the expression '~s' is not a numExp", [Exp])
+        {_, Val} -> printErr("valueOf(isZeroExp): the expression '~s' is not a numExp", [Val])
     end;
 valueOf({ ifThenElseExp, Bool, Then, Else }, Env) -> 
     case valueOf(Bool, Env) of
