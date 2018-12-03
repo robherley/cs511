@@ -6,7 +6,7 @@ mtype = { one, two, winner }; /* symb. Msg. Names */
 chan q[N] = [L] of {mtype, byte}; /* asynchronous channels */
 
 byte nr_leaders = 0;
-ltl P { <>(nr_leaders == 1) }
+ltl P { [](nr_leaders == 1 || nr_leaders == 0) }
 
 proctype nnode (chan inp, out; byte mynumber) {
     bit Active = 1, know_winner = 0;
@@ -51,7 +51,7 @@ end:    do
             printf("MSC: LOST\n");
         :: else ->
             printf("MSC: LEADER\n");
-            nr_leaders++; /* inc leaders */
+            nr_leaders++;
         fi;
         if
         :: know_winner
@@ -69,12 +69,12 @@ init {
         do
         :: I <= N ->
             if /* non deterministic choice */
-            :: ini[0] == 0 && N >= 1 -> Ini[0] = I
-            :: ini[1] == 0 && N >= 2 -> Ini[1] = I
-            :: ini[2] == 0 && N >= 3 -> Ini[2] = I
-            :: ini[3] == 0 && N >= 4 -> Ini[3] = I
-            :: ini[4] == 0 && N >= 5 -> Ini[4] = I
-            :: ini[5] == 0 && N >= 6 -> Ini[5] = I /* works for up to N = 6 */
+            :: Ini[0] == 0 && N >= 1 -> Ini[0] = I
+            :: Ini[1] == 0 && N >= 2 -> Ini[1] = I
+            :: Ini[2] == 0 && N >= 3 -> Ini[2] = I
+            :: Ini[3] == 0 && N >= 4 -> Ini[3] = I
+            :: Ini[4] == 0 && N >= 5 -> Ini[4] = I
+            :: Ini[5] == 0 && N >= 6 -> Ini[5] = I /* works for up to N = 6 */
             fi;
             I++
         :: I > N -> /* assigned all numbers 1 .. N */

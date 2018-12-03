@@ -1,0 +1,6 @@
+                  I am node 5 and I know the leader is 5
+                      I am node 1 and I know the leader is 5
+                          I am node 3 and I know the leader is 5
+          I am node 2 and I know the leader is 5
+              I am node 4 and I know the leader is 5
+6 processes created

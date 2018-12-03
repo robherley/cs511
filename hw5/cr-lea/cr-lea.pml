@@ -2,60 +2,32 @@
 #define L 10 /* size of buffer (>= 2*N) */
 byte I; /* will be used in init for assinging ids to nodes */
 
-mtype = { one, two, winner }; /* symb. Msg. Names */
+mtype = { next, winner }; /* symb. Msg. Names */
 chan q[N] = [L] of {mtype, byte}; /* asynchronous channels */
-byte nr_leaders = 0;
 
 proctype nnode (chan inp, out; byte mynumber) {
-    bit Active = 1, know_winner = 0;
-    byte nr, maximum = mynumber, neighbourR;
+    byte nr;
 
     xr inp; /* channel assertion: exclusize recv access to channel in */
     xs out; /* channel assertion: exclusize send access to channel out */
 
-    printf("MSC: %d\n", mynumber);
-    out!one(mynumber);
+    out!next(mynumber);
 end:    do
-    :: inp?one(nr) ->
+    :: inp?next(nr) ->
         if
-        :: Active ->
-            if
-            :: nr != maximum ->
-                out!two(nr);
-                neighbourR = nr
-            :: else ->
-                know_winner = 1;
-                out!winner, nr;
-            fi
-        :: else ->
-            out!one(nr)
-        fi
-    ::inp?two(nr) ->
-        if
-        :: Active ->
-            if 
-            :: neighbourR > nr && neighbourR > maximum ->
-                maximum = neighbourR;
-                out!one(neighbourR)
-            :: else ->
-                Active = 0
-            fi
-        :: else ->
-            out!two(nr)
+        :: nr == mynumber -> 
+            printf("I am node %d and I know the leader is %d\n", mynumber, mynumber);
+            out!winner, nr;
+        :: nr > mynumber ->
+            out!next(nr)
+        :: else /* nr < mynumber */
         fi
     :: inp?winner, nr ->
         if
         :: nr != mynumber ->
-            printf("MSC: LOST\n");
-        :: else ->
-            assert(my_number == N) /* assert id is highest */
-            printf("MSC: LEADER\n");
-            nr_leaders++; /* inc leaders */
-            assert(nr_leaders == 1) /* check there is only one leader */
-        fi;
-        if
-        :: know_winner
-        :: else -> out!winner, nr
+            printf("I am node %d and I know the leader is %d\n", mynumber, nr);
+            out!winner, nr;
+        :: else
         fi;
         break
     od
